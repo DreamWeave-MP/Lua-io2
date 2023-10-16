@@ -43,7 +43,7 @@ jobs:
       - name: Build
         run: |
           cmake --build . --config ${{ matrix.build_type }}
-          mv $BUILD_DIR/io2.dll $BUILD_DIR/io2-${{ matrix.build_type }}
+          mv $BUILD_DIR/io2.dll $BUILD_DIR/io2-${{ matrix.build_type }}.dll
 
 
       - name: Upload Release
