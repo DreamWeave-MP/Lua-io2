@@ -61,6 +61,6 @@ download "Boost 1.80.0" \
 	 "https://gitlab.com/OpenMW/openmw-deps/-/raw/main/windows/boost_1_80_0-msvc-14.3-64.exe" \
 	 "boost-1.80.0-msvc14.3-win64.exe"
 
-.\boost-1.80.0-msvc14.3-win64.exe //DIR="${CWD_DRIVE_ROOT}" //VERYSILENT //NORESTART //SUPPRESSMSGBOXES //LOG='boost_install.log'
+./boost-1.80.0-msvc14.3-win64.exe //DIR="${CWD_DRIVE_ROOT}" //VERYSILENT //NORESTART //SUPPRESSMSGBOXES //LOG='boost_install.log'
 
 ls -laR
