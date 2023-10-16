@@ -54,5 +54,5 @@ jobs:
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: Stable-${{ github.ref }}
+          tag_name: Stable-${{ github.sha }}
           files: D:/a/Lua-io2/Lua-io2/Debug/io2.dll
