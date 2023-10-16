@@ -21,8 +21,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            C:/local/boost_1_80_0
+            C:/local/boost_1_80_0/
             D:/a/Lua-io2/Lua-io2/LuaJIT/
+            D:/a/Lua-io2/Lua-io2/sol2/
           key: ${{ runner.os }}-LuaBoost
 
       - name: Get Deps (Boost, LuaJIT)
@@ -34,5 +35,5 @@ jobs:
         shell: bash
         run: LUA_DIR=LuaJIT/ cmake .
 
-      - name: Build
-        run: cmake --build .
+      # - name: Build
+      #   run: cmake --build .
