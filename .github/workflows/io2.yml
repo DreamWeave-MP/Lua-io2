@@ -35,5 +35,10 @@ jobs:
         shell: bash
         run: LUA_DIR=LuaJIT/ cmake .
 
+      - name: Check Boost
+        shell: bash
+        run: |
+          ls -la1R C:/local/boost_1_80_0/
+
       - name: Build
         run: cmake --build .
