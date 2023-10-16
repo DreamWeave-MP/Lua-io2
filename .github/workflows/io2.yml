@@ -10,8 +10,13 @@ on:
 
 
 jobs:
+  strategy:
+    matrix:
+      build_type: [Release, RelWithDebInfo, MinSizeRel, Debug]
   Windows:
     runs-on: windows-2022
+    env:
+      build_dir: D:/a/Lua-io2/Lua-io2/${{ matrix.build_type}}/
 
     steps:
       - uses: actions/checkout@v4
@@ -36,12 +41,15 @@ jobs:
         run: LUA_DIR=LuaJIT/ cmake .
 
       - name: Build
-        run: cmake --build . --config MinSizeRel
+        run: |
+          cmake --build . --config ${{ matrix.build_type }}
+          mv $BUILD_DIR/io2.dll $BUILD_DIR/io2-${{ matrix.build_type }}
+
 
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: Stable-${{ github.sha }}
-          files: D:/a/Lua-io2/Lua-io2/Debug/io2.dll
+          files: $BUILD_DIR/io2-${{ matrix.build_type }}.dll
           body: |
             CI Build for Dreamweave IO2 fork
