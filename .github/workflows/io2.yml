@@ -38,21 +38,10 @@ jobs:
       - name: Build
         run: cmake --build .
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: Stable-${{ github.sha }}
-          release_name: Release-CI
-          body: |
-            CI Build for Dreamweave IO2 fork
-          draft: false
-          prerelease: false
-
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: Stable-${{ github.sha }}
           files: D:/a/Lua-io2/Lua-io2/Debug/io2.dll
+          body: |
+            CI Build for Dreamweave IO2 fork
