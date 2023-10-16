@@ -45,9 +45,8 @@ jobs:
           cmake --build . --config ${{ matrix.build_type }}
           mv ${{ env.BUILD_DIR }}/io2.dll ${{ env.BUILD_DIR }}/io2-${{ matrix.build_type }}.dll
 
-
       - name: Upload Release
-        if: github.event_name != 'pull_request'
+        # if: github.event_name != 'pull_request'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: Stable-CI
