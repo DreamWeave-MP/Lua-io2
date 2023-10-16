@@ -10,10 +10,10 @@ on:
 
 
 jobs:
-  strategy:
-    matrix:
-      build_type: [Release, RelWithDebInfo, MinSizeRel, Debug]
   Windows:
+    strategy:
+      matrix:
+        build_type: [Release, RelWithDebInfo, MinSizeRel, Debug]
     runs-on: windows-2022
     env:
       build_dir: D:/a/Lua-io2/Lua-io2/${{ matrix.build_type}}/
