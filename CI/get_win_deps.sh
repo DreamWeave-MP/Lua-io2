@@ -61,6 +61,17 @@ download "Boost 1.80.0" \
 	 "https://gitlab.com/OpenMW/openmw-deps/-/raw/main/windows/boost_1_80_0-msvc-14.3-64.exe" \
 	 "boost-1.80.0-msvc14.3-win64.exe"
 
+echo "Installing Boost . . ."
 ./boost-1.80.0-msvc14.3-win64.exe //DIR="${CWD_DRIVE_ROOT}" //VERYSILENT //NORESTART //SUPPRESSMSGBOXES //LOG='boost_install.log'
+
+echo "Extracting LuaJIT . . ."
+eval 7z x -y LuaJIT-v2.1.0-beta3-452-g7a0cf5fd-msvc2019-win64.7z
+
+export LUA_DIR="$(pwd)/LuaJIT"
+
+echo $LUA_DIR
+
+echo "Praise the Sun!"
+git submodule init && git submodule update
 
 ls -laR
