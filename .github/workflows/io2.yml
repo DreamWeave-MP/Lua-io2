@@ -1,0 +1,27 @@
+name: IO2-Main
+
+on:
+  push:
+    branches:
+      - 'master'
+    pull_request:
+      branches: [ master ]
+  workflow-dispatch:
+
+
+jobs:
+  Windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get Deps (Boost, LuaJIT)
+        shell: bash
+        run: get-deps.sh
+
+      - name: Configure
+        run: cmake .
+
+      - name: Build
+        run: cmake --build .
