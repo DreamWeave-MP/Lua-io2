@@ -67,10 +67,6 @@ echo "Installing Boost . . ."
 echo "Extracting LuaJIT . . ."
 eval 7z x -y LuaJIT-v2.1.0-beta3-452-g7a0cf5fd-msvc2019-win64.7z
 
-export LUA_DIR="$(pwd)/LuaJIT"
-
-echo $LUA_DIR
-
 echo "Praise the Sun!"
 git submodule init && git submodule update
 
