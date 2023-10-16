@@ -65,7 +65,7 @@ echo "Installing Boost . . ."
 ./boost-1.80.0-msvc14.3-win64.exe //DIR="${CWD_DRIVE_ROOT}" //VERYSILENT //NORESTART //SUPPRESSMSGBOXES //LOG='boost_install.log'
 
 echo "Extracting LuaJIT . . ."
-eval 7z x -y LuaJIT-v2.1.0-beta3-452-g7a0cf5fd-msvc2019-win64.7z
+eval 7z x -y LuaJIT-v2.1.0-beta3-452-g7a0cf5fd-msvc2019-win64.7z -o ./LuaJIT
 
 echo "Praise the Sun!"
 git submodule init && git submodule update
