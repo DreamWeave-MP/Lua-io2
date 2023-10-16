@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 CMAKE_OPTS=""
 add_cmake_opts() {
     CMAKE_OPTS="$CMAKE_OPTS $@"
