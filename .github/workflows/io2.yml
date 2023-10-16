@@ -16,8 +16,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Cache Boost
+        id: cache-LuaBoost
+        uses: actions/cache@v3
+        with:
+          path: |
+            C:/local/boost_1_80_0
+            D:/a/Lua-io2/Lua-io2/LuaJIT/
+          key: ${{ runner.os }}-LuaBoost
+
       - name: Get Deps (Boost, LuaJIT)
         shell: bash
+        if: steps.cache-LuaBoost.outputs.cache-hit != 'true'
         run: CI/get_win_deps.sh
 
       - name: Configure
