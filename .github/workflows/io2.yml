@@ -35,5 +35,5 @@ jobs:
         shell: bash
         run: LUA_DIR=LuaJIT/ cmake .
 
-      # - name: Build
-      #   run: cmake --build .
+      - name: Build
+        run: cmake --build .
