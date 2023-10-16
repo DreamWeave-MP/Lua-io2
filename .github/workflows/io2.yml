@@ -36,7 +36,7 @@ jobs:
         run: LUA_DIR=LuaJIT/ cmake .
 
       - name: Build
-        run: cmake --build .
+        run: cmake --build . --config MinSizeRel
 
       - name: Upload Release
         uses: softprops/action-gh-release@v1
