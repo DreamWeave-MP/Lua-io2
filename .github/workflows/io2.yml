@@ -47,9 +47,17 @@ jobs:
 
 
       - name: Upload Release
+        if: github.event_name != 'pull_request'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: Stable-${{ github.sha }}
           files: ${{ env.BUILD_DIR }}/io2-${{ matrix.build_type }}.dll
           body: |
             CI Build for Dreamweave IO2 fork
+
+      - name: Upload Artifact
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v3
+        with:
+          path: dreamweave-build
+          name: io2-lua-${{ matrix.build_type }}
