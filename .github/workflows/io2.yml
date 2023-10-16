@@ -18,7 +18,7 @@ jobs:
 
       - name: Get Deps (Boost, LuaJIT)
         shell: bash
-        run: get-deps.sh
+        run: CI/get_win_deps.sh
 
       - name: Configure
         run: cmake .
