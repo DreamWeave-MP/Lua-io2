@@ -16,7 +16,7 @@ jobs:
         build_type: [Release, RelWithDebInfo, MinSizeRel, Debug]
     runs-on: windows-2022
     env:
-      build_dir: D:/a/Lua-io2/Lua-io2/${{ matrix.build_type}}/
+      BUILD_DIR: D:/a/Lua-io2/Lua-io2/${{ matrix.build_type}}/
 
     steps:
       - uses: actions/checkout@v4
