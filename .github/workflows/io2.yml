@@ -53,6 +53,5 @@ jobs:
 
       - name: Upload Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: D:\a\Lua-io2\Lua-io2\Debug\io2.dll
