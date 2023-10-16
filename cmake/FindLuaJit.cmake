@@ -4,7 +4,7 @@ libfind_pkg_detect(LuaJit luajit
     FIND_PATH luajit.h
         HINTS $ENV{LUA_DIR}
         PATH_SUFFIXES include include/luajit-2.1
-    FIND_LIBRARY luajit-5.1 luajit
+    FIND_LIBRARY luajit-5.1 luajit lua51
         HINTS $ENV{LUA_DIR}
         PATH_SUFFIXES lib
 )

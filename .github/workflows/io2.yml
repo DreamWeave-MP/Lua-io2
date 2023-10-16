@@ -1,0 +1,62 @@
+name: IO2-Main
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    branches: [ master ]
+
+
+jobs:
+  Windows:
+    strategy:
+      matrix:
+        build_type: [Release, RelWithDebInfo, MinSizeRel, Debug]
+    runs-on: windows-2022
+    env:
+      BUILD_DIR: D:/a/Lua-io2/Lua-io2/${{ matrix.build_type}}/
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Boost
+        id: cache-LuaBoost
+        uses: actions/cache@v3
+        with:
+          path: |
+            C:/local/boost_1_80_0/
+            D:/a/Lua-io2/Lua-io2/LuaJIT/
+            D:/a/Lua-io2/Lua-io2/sol2/
+          key: ${{ runner.os }}-LuaBoost
+
+      - name: Get Deps (Boost, LuaJIT)
+        shell: bash
+        if: steps.cache-LuaBoost.outputs.cache-hit != 'true'
+        run: CI/get_win_deps.sh
+
+      - name: Configure
+        shell: bash
+        run: LUA_DIR=LuaJIT/ cmake .
+
+      - name: Build
+        run: |
+          cmake --build . --config ${{ matrix.build_type }}
+          mv ${{ env.BUILD_DIR }}/io2.dll ${{ env.BUILD_DIR }}/io2-${{ matrix.build_type }}.dll
+
+      - name: Upload Release
+        if: github.event_name != 'pull_request'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: Stable-CI
+          files: ${{ env.BUILD_DIR }}/io2-${{ matrix.build_type }}.dll
+          body: |
+            CI Build for Dreamweave IO2 fork
+
+      - name: Upload Artifact
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v3
+        with:
+          path: ${{ env.BUILD_DIR }}/io2-${{ matrix.build_type }}.dll
+          name: io2-lua-${{ matrix.build_type }}
